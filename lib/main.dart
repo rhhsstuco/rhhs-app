@@ -18,8 +18,8 @@ class RHHSApp extends StatelessWidget {
       theme: ThemeData().copyWith(
         colorScheme: colorScheme,
         appBarTheme: const AppBarTheme().copyWith(
-          backgroundColor: colorScheme.onPrimaryContainer,
-          foregroundColor: colorScheme.primaryContainer,
+          backgroundColor: colorScheme.primary,
+          foregroundColor: colorScheme.onPrimary,
         ),
       ),
       home: const NavigationScreen(),
