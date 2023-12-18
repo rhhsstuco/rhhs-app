@@ -17,7 +17,6 @@ class CalendarWidget extends StatefulWidget {
 }
 
 class _CalendarWidgetState extends State<CalendarWidget> {
-  CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDate = DateTime.now();
   DateTime? _selectedDate;
   List<SchoolEvent>? _selectedEvents;
@@ -43,7 +42,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
     return TableCalendar<SchoolEvent>(
       firstDay: DateTime.utc(2010, 1, 20),
       lastDay: DateTime.utc(2030, 3, 14),
-      calendarFormat: _calendarFormat,
+      calendarFormat: CalendarFormat.month,
       focusedDay: _focusedDate,
       eventLoader: _getEventsForDay,
       selectedDayPredicate: (day) {
@@ -53,6 +52,20 @@ class _CalendarWidgetState extends State<CalendarWidget> {
       onPageChanged: (focusedDay) {
         _focusedDate = focusedDay;
       },
+      calendarStyle: CalendarStyle(
+        selectedDecoration: ShapeDecoration(
+          shape: const CircleBorder(),
+          color: Theme.of(context).colorScheme.primary,
+        ),
+        todayDecoration: ShapeDecoration(
+          shape: const CircleBorder(),
+          color: Theme.of(context).colorScheme.primary.withAlpha(128),
+        ),
+      ),
+      headerStyle: const HeaderStyle(
+        formatButtonVisible: false,
+        titleCentered: true,
+      ),
     );
   }
 }

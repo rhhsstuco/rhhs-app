@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:rhhs_app/test_data/events.dart';
 import 'package:rhhs_app/types/school_event.dart';
 import 'package:rhhs_app/widgets/calendar.dart';
+import 'package:rhhs_app/widgets/event_list.dart';
 
 class EventsScreen extends StatefulWidget {
   const EventsScreen({super.key});
@@ -11,10 +13,12 @@ class EventsScreen extends StatefulWidget {
 }
 
 class _EventsScreenState extends State<EventsScreen> {
+  DateTime? _selectedDate;
   List<SchoolEvent>? _eventList;
 
   void onDateSelect(DateTime selectedDate, List<SchoolEvent> eventList) {
     setState(() {
+      _selectedDate = selectedDate;
       _eventList = eventList;
     });
   }
@@ -27,20 +31,23 @@ class _EventsScreenState extends State<EventsScreen> {
           onDateSelect: onDateSelect,
           eventMap: eventMap,
         ),
-        Expanded(
-          child: ListView.builder(
-            padding: const EdgeInsets.all(8),
-            itemCount: _eventList?.length ?? 0,
-            itemBuilder: (context, index) {
-              final event = _eventList![index];
-              return ListTile(
-                title: Text(event.name),
-                subtitle: Text(event.description),
-              );
-            },
-          ),
-        ),
+        if (_selectedDate != null)
+          Expanded(
+            child: EventList(
+              selectedDate: _selectedDate,
+              eventList: _eventList,
+            ),
+          )
       ],
     );
+  }
+}
+
+class EventsScreenAppBar extends StatelessWidget {
+  const EventsScreenAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text("Calendar");
   }
 }

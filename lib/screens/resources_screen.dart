@@ -10,3 +10,12 @@ class ResourcesScreen extends StatelessWidget {
     );
   }
 }
+
+class ResourcesScreenAppBar extends StatelessWidget {
+  const ResourcesScreenAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text("Resources");
+  }
+}

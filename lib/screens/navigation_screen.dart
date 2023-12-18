@@ -21,6 +21,13 @@ class _NavigationScreenState extends State<NavigationScreen> {
     ResourcesScreen(),
   ];
 
+  static const List<Widget> _appBars = <Widget>[
+    HomeScreenAppBar(),
+    EventsScreenAppBar(),
+    ClubsScreenAppBar(),
+    ResourcesScreenAppBar(),
+  ];
+
   void _onItemTapped(int index) {
     if (index > _screens.length) {
       throw ArgumentError(
@@ -37,7 +44,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("November 17th"), // TODO: Make this dynamic
+        title: _appBars.elementAt(_selectedIndex) // TODO: Make this dynamic
       ),
       body: _screens.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(

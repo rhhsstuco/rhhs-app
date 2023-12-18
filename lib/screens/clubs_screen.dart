@@ -10,3 +10,12 @@ class ClubsScreen extends StatelessWidget {
     );
   }
 }
+
+class ClubsScreenAppBar extends StatelessWidget {
+  const ClubsScreenAppBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text("Clubs");
+  }
+}
