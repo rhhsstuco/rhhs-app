@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:rhhs_app/test_data/events.dart';
 import 'package:rhhs_app/types/school_event.dart';
 import 'package:rhhs_app/widgets/calendar.dart';
@@ -31,6 +30,11 @@ class _EventsScreenState extends State<EventsScreen> {
           onDateSelect: onDateSelect,
           eventMap: eventMap,
         ),
+        if (_selectedDate != null)
+          const SizedBox(
+            width: double.infinity,
+            height: 25,
+          ),
         if (_selectedDate != null)
           Expanded(
             child: EventList(

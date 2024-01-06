@@ -10,6 +10,13 @@ final eventList = <SchoolEvent>[
     name: "Jollyweek",
     description:
         "Enjoy 5 days of holiday joy including a gingerbread house decorating contest!",
+  ),
+  SchoolEvent(
+    startDate: DateTime(2023, 12, 22),
+    endDate: DateTime(2023, 12, 22),
+    name: "Flannel Day",
+    description:
+        "Wear flannel!",
   )
 ];
 

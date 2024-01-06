@@ -25,16 +25,24 @@ class EventList extends StatelessWidget {
             fontSize: 20,
           ),
         ),
+        const SizedBox(
+          width: double.infinity,
+          height: 5,
+        ),
         if (eventList != null && eventList!.isNotEmpty)
           Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 4,
+                vertical: 0,
+              ),
               itemCount: eventList?.length ?? 0,
               itemBuilder: (context, index) {
                 final event = eventList![index];
                 return ListTile(
                   title: Text(event.name),
                   subtitle: Text(event.description),
+                  minVerticalPadding: 0,
                 );
               },
             ),
