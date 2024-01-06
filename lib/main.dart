@@ -4,8 +4,8 @@ import 'package:rhhs_app/screens/navigation_screen.dart';
 final colorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromRGBO(79, 134, 75, 1),
   secondary: const Color.fromRGBO(160, 196, 157, 1),
-  background: Colors.red,
-  surface: const Color.fromRGBO(240, 240, 240, 1),
+  background: const Color.fromRGBO(230, 230, 230, 1),
+  surface: const Color.fromRGBO(255, 255, 255, 1),
 );
 
 void main() {
@@ -20,6 +20,8 @@ class RHHSApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData().copyWith(
         colorScheme: colorScheme,
+        scaffoldBackgroundColor: colorScheme.background,
+        canvasColor: colorScheme.background,
         appBarTheme: const AppBarTheme().copyWith(
           backgroundColor: colorScheme.primary,
           foregroundColor: colorScheme.onPrimary,

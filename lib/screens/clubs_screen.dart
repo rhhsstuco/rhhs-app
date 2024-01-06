@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:rhhs_app/test_data/clubs.dart';
 import 'package:rhhs_app/widgets/club_list.dart';
@@ -10,8 +12,35 @@ class ClubsScreen extends StatefulWidget {
 }
 
 class _ClubsScreenState extends State<ClubsScreen> {
+  String? _searchText;
+
+  Widget Function(String) tileMapper(SearchController controller) {
+    return (clubName) => ListTile(
+          title: Text(clubName),
+          onTap: () {
+            setState(() {
+              controller.closeView(clubName);
+            });
+          },
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final filteredClubList = clubList.where((club) {
+      // Don't apply filter
+      if ((_searchText == null) || (_searchText!.isEmpty)) {
+        return true;
+      }
+
+      // Apply filter
+      final searchTextLowercase = _searchText!.toLowerCase();
+
+      return club.name.toLowerCase().contains(searchTextLowercase) ||
+          club.room.toLowerCase().contains(searchTextLowercase) ||
+          club.meetingTime.toLowerCase().contains(searchTextLowercase);
+    }).toList();
+
     return Column(
       children: [
         Padding(
@@ -19,7 +48,6 @@ class _ClubsScreenState extends State<ClubsScreen> {
           child: SearchAnchor(
             builder: (context, controller) {
               return SearchBar(
-                controller: controller,
                 shape: MaterialStatePropertyAll<OutlinedBorder>(
                   ContinuousRectangleBorder(
                     borderRadius: BorderRadius.circular(0),
@@ -28,33 +56,36 @@ class _ClubsScreenState extends State<ClubsScreen> {
                 padding: const MaterialStatePropertyAll<EdgeInsets>(
                   EdgeInsets.symmetric(horizontal: 16),
                 ),
-                onTap: () {
-                  controller.openView();
+                onChanged: (text) {
+                  setState(() {
+                    _searchText = text;
+                  });
                 },
-                onChanged: (_) {
-                  controller.openView();
+                onSubmitted: (text) {
+                  setState(() {
+                    _searchText = text;
+                  });
                 },
                 leading: const Icon(Icons.search),
               );
             },
             suggestionsBuilder: (context, controller) {
-              return List<ListTile>.generate(5, (index) {
-                final String item = 'Item $index';
+              // If no filter, suggest clubs
+              if (filteredClubList.length == clubList.length) {
+                return clubNameList
+                    .getRange(0, min(clubNameList.length, 5))
+                    .map(tileMapper(controller));
+              }
 
-                return ListTile(
-                  title: Text(item),
-                  onTap: () {
-                    setState(() {
-                      controller.closeView(item);
-                    });
-                  },
-                );
-              });
+              return filteredClubList
+                  .getRange(0, min(filteredClubList.length, 5))
+                  .map((club) => club.name)
+                  .map(tileMapper(controller));
             },
           ),
         ),
         Expanded(
-          child: ClubList(clubs: clubList),
+          child: ClubList(clubs: filteredClubList),
         ),
       ],
     );

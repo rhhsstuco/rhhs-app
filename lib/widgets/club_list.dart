@@ -12,14 +12,20 @@ class ClubList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
       padding: const EdgeInsets.all(8.0),
       itemCount: clubs.length,
       itemBuilder: (context, index) {
         final SchoolClub currentClub = clubs.elementAt(index);
-        
+
         return ClubCard(
           club: currentClub,
+        );
+      },
+      separatorBuilder: (context, index) {
+        return const SizedBox(
+          width: double.infinity,
+          height: 15,
         );
       },
     );
