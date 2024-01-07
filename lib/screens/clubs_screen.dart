@@ -19,6 +19,7 @@ class _ClubsScreenState extends State<ClubsScreen> {
           title: Text(clubName),
           onTap: () {
             setState(() {
+              _searchText = clubName;
               controller.closeView(clubName);
             });
           },
@@ -45,43 +46,26 @@ class _ClubsScreenState extends State<ClubsScreen> {
       children: [
         Padding(
           padding: const EdgeInsets.all(16.0),
-          child: SearchAnchor(
-            builder: (context, controller) {
-              return SearchBar(
-                shape: MaterialStatePropertyAll<OutlinedBorder>(
-                  ContinuousRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
-                ),
-                padding: const MaterialStatePropertyAll<EdgeInsets>(
-                  EdgeInsets.symmetric(horizontal: 16),
-                ),
-                onChanged: (text) {
-                  setState(() {
-                    _searchText = text;
-                  });
-                },
-                onSubmitted: (text) {
-                  setState(() {
-                    _searchText = text;
-                  });
-                },
-                leading: const Icon(Icons.search),
-              );
+          child: SearchBar(
+            shape: MaterialStatePropertyAll<OutlinedBorder>(
+              ContinuousRectangleBorder(
+                borderRadius: BorderRadius.circular(0),
+              ),
+            ),
+            padding: const MaterialStatePropertyAll<EdgeInsets>(
+              EdgeInsets.symmetric(horizontal: 16),
+            ),
+            onChanged: (text) {
+              setState(() {
+                _searchText = text;
+              });
             },
-            suggestionsBuilder: (context, controller) {
-              // If no filter, suggest clubs
-              if (filteredClubList.length == clubList.length) {
-                return clubNameList
-                    .getRange(0, min(clubNameList.length, 5))
-                    .map(tileMapper(controller));
-              }
-
-              return filteredClubList
-                  .getRange(0, min(filteredClubList.length, 5))
-                  .map((club) => club.name)
-                  .map(tileMapper(controller));
+            onSubmitted: (text) {
+              setState(() {
+                _searchText = text;
+              });
             },
+            leading: const Icon(Icons.search),
           ),
         ),
         Expanded(
