@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:rhhs_app/widgets/resource_list.dart';
 
 class ResourcesScreen extends StatelessWidget {
   const ResourcesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Resources"),
-    );
+    return const ResourceList();
   }
 }
 
