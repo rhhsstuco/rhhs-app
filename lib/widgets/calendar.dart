@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:rhhs_app/types/school_event.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -62,9 +64,10 @@ class _CalendarWidgetState extends State<CalendarWidget> {
           color: Theme.of(context).colorScheme.primary.withAlpha(128),
         ),
       ),
-      headerStyle: const HeaderStyle(
+      headerStyle: HeaderStyle(
         formatButtonVisible: false,
         titleCentered: true,
+        titleTextStyle: Theme.of(context).textTheme.titleLarge!,
       ),
     );
   }

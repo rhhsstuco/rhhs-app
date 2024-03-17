@@ -28,6 +28,33 @@ class RHHSApp extends StatelessWidget {
         appBarTheme: const AppBarTheme().copyWith(
           backgroundColor: colorScheme.primary,
           foregroundColor: colorScheme.onPrimary,
+          centerTitle: true,
+          titleTextStyle: GoogleFonts.poppins().copyWith(
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        textTheme: GoogleFonts.interTextTheme().copyWith(
+          headlineLarge: GoogleFonts.poppins().copyWith(
+            fontSize: 32.0,
+            fontWeight: FontWeight.w900,
+            color: Colors.black
+          ),
+          headlineMedium: GoogleFonts.poppins().copyWith(
+            fontSize: 28.0,
+            fontWeight: FontWeight.w900,
+            color: Colors.black
+          ),
+          titleLarge: GoogleFonts.poppins().copyWith(
+            fontSize: 22.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.black
+          ),
+          titleMedium: GoogleFonts.poppins().copyWith(
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.black
+          ),
         ),
       ),
       home: const NavigationScreen(),

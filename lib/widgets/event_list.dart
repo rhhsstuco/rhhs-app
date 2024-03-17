@@ -20,10 +20,7 @@ class EventList extends StatelessWidget {
         Text(
           formatter.format(selectedDate!),
           textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         const SizedBox(
           width: double.infinity,
@@ -40,17 +37,24 @@ class EventList extends StatelessWidget {
               itemBuilder: (context, index) {
                 final event = eventList![index];
                 return ListTile(
-                  title: Text(event.name),
-                  subtitle: Text(event.description),
+                  title: Text(
+                    event.name,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  subtitle: Text(
+                    event.description,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
                   minVerticalPadding: 0,
                 );
               },
             ),
           ),
         if (eventList != null && eventList!.isEmpty)
-          const Text(
+          Text(
             "No events on this day.",
             textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
       ],
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:rhhs_app/test_data/annoucements.dart';
+import 'package:rhhs_app/test_data/announcements.dart';
 import 'package:rhhs_app/widgets/announcement_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,17 +8,21 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemBuilder: (context, index) {
-        return AnnouncementCard(
-            announcement: announcementList.elementAt(index));
-      },
-      separatorBuilder: (context, index) {
-        return const SizedBox(
-          height: 12,
-        );
-      },
-      itemCount: announcementList.length,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListView.separated(
+        itemBuilder: (context, index) {
+          return AnnouncementCard(
+            announcement: announcementList.elementAt(index),
+          );
+        },
+        separatorBuilder: (context, index) {
+          return const SizedBox(
+            height: 12,
+          );
+        },
+        itemCount: announcementList.length,
+      ),
     );
   }
 }
@@ -30,6 +34,6 @@ class HomeScreenAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(formatter.format(DateTime.now()));
+    return const Text("Announcements");
   }
 }

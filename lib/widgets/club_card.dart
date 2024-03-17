@@ -15,7 +15,7 @@ class ClubCard extends StatelessWidget {
       height: 250.0,
       child: Card(
         color: Theme.of(context).colorScheme.surface,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         elevation: 5.0,
         clipBehavior: Clip.antiAlias,
         child: Stack(
@@ -30,26 +30,15 @@ class ClubCard extends StatelessWidget {
                   children: [
                     Text(
                       club.name,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 24.0,
-                      ),
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     Text(
                       club.room,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 20.0,
-                        height: 1.2,
-                      ),
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     Text(
                       club.meetingTime,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 20.0,
-                        height: 1.2,
-                      ),
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ],
                 ),

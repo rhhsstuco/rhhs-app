@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Announcement {
   final String content;
   final String author;
@@ -11,7 +13,13 @@ class Announcement {
 }
 
 enum AnnouncementType {
-  admin,
-  club,
-  guidance,
+  admin(color: Colors.deepOrange),
+  club(color: Colors.lightBlue),
+  guidance(color: Colors.teal);
+
+  final Color color;
+
+  const AnnouncementType({
+    required this.color,
+  });
 }

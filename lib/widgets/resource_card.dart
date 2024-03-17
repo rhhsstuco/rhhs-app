@@ -35,7 +35,7 @@ class ResourceCard extends StatelessWidget {
       onTap: () => _launchURL(resource.url, context),
       child: Card(
         color: Theme.of(context).colorScheme.surface,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         elevation: 5.0,
         clipBehavior: Clip.antiAlias,
         child: Stack(
@@ -57,8 +57,7 @@ class ResourceCard extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Text(
                     resource.name,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
                       color: Theme.of(context).colorScheme.onBackground,
                     ),
                   ),
