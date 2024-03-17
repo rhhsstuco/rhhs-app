@@ -44,8 +44,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: _appBars.elementAt(_selectedIndex) // TODO: Make this dynamic
-          ),
+        title: _appBars.elementAt(_selectedIndex)
+      ),
       body: _screens.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[

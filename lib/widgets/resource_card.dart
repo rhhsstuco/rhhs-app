@@ -31,22 +31,41 @@ class ResourceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1 / 1,
-      child: InkWell(
-        onTap: () => _launchURL(resource.url, context),
-        child: Card(
-          color: Theme.of(context).colorScheme.surface,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
-          elevation: 5.0,
-          clipBehavior: Clip.antiAlias,
-          child: Column(
-            children: [
-              Expanded(child: Image.asset(resource.imagePath)),
-              Text(resource.name)
-            ],
-          ),
+    return InkWell(
+      onTap: () => _launchURL(resource.url, context),
+      child: Card(
+        color: Theme.of(context).colorScheme.surface,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
+        elevation: 5.0,
+        clipBehavior: Clip.antiAlias,
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: AspectRatio(
+                aspectRatio: 1 / 1,
+                child: Image.asset(resource.imagePath),
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                height: 24,
+                color: Theme.of(context).colorScheme.background.withOpacity(0.9),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    resource.name,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.onBackground,
+                    ),
+                  ),
+                ),
+              )
+            ),
+          ],
         ),
       ),
     );
