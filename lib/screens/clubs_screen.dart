@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:rhhs_app/test_data/clubs.dart';
 import 'package:rhhs_app/widgets/club_list.dart';
