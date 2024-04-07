@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:rhhs_app/test_data/announcements.dart';
 import 'package:rhhs_app/types/announcement.dart';
 import 'package:rhhs_app/widgets/announcement_card.dart';
-import 'package:rhhs_app/widgets/club_card.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../types/school_club.dart';
