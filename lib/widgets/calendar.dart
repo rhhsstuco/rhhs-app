@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:rhhs_app/types/school_event.dart';
 import 'package:table_calendar/table_calendar.dart';

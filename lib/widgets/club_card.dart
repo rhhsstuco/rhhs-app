@@ -1,13 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:rhhs_app/types/school_club.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ClubCard extends StatelessWidget {
+class ClubCard extends StatefulWidget {
   final SchoolClub club;
 
   const ClubCard({
     required this.club,
     super.key,
   });
+
+  @override
+  State<ClubCard> createState() => _ClubCardState();
+}
+
+class _ClubCardState extends State<ClubCard> {
+  bool _canNotify = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    initializeCanNotify();
+  }
+
+  void initializeCanNotify() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    final List<String>? whitelist = prefs.getStringList(SchoolClub.clubWhitelistKey);
+
+    setState(() {
+      _canNotify = whitelist?.contains(widget.club.name) ?? false;
+    });
+  }
+
+  void onPress() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final List<String> whitelist = prefs.getStringList(SchoolClub.clubWhitelistKey) ?? [];
+    final clubName = widget.club.name;
+
+    if (whitelist.contains(clubName)) {
+      whitelist.remove(clubName);
+
+      setState(() {
+        _canNotify = false;
+      });
+
+    } else {
+      whitelist.add(clubName);
+
+      setState(() {
+        _canNotify = true;
+      });
+    }
+
+    prefs.setStringList(SchoolClub.clubWhitelistKey, whitelist);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +77,15 @@ class ClubCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      club.name,
+                      widget.club.name,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     Text(
-                      club.room,
+                      widget.club.room,
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     Text(
-                      club.meetingTime,
+                      widget.club.meetingTime,
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ],
@@ -49,7 +97,7 @@ class ClubCard extends StatelessWidget {
               right: 0,
               height: 90.0,
               child: Container(
-                color: club.bannerColor,
+                color: widget.club.bannerColor,
               ),
             ),
             Positioned(
@@ -75,11 +123,23 @@ class ClubCard extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: ClipOval(
                       child: Image.asset(
-                        club.imagePath,
-                        semanticLabel: '${club.name} Logo',
+                        widget.club.imagePath,
+                        semanticLabel: '${widget.club.name} Logo',
                       ),
                     ),
                   ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 90,
+              right: 0,
+              child: IconButton(
+                onPressed: onPress,
+                icon: Icon(
+                  _canNotify
+                      ? Icons.notifications
+                      : Icons.notifications_outlined,
                 ),
               ),
             ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SchoolClub {
+  static const clubWhitelistKey = "clubs_whitelist";
+
   final String name;
   final String room;
   final String meetingTime;
