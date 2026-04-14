@@ -68,7 +68,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Theme.of(context).colorScheme.primary,
-        unselectedItemColor: Theme.of(context).colorScheme.onBackground,
+        unselectedItemColor: Theme.of(context).colorScheme.onSurface,
         onTap: _onItemTapped,
       ),
     );

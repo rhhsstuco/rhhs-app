@@ -52,13 +52,13 @@ class ResourceCard extends StatelessWidget {
               right: 0,
               child: Container(
                 height: 24,
-                color: Theme.of(context).colorScheme.background.withOpacity(0.9),
+                color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.9),
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
                     resource.name,
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                 ),

@@ -23,8 +23,8 @@ class RHHSApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData().copyWith(
         colorScheme: colorScheme,
-        scaffoldBackgroundColor: colorScheme.background,
-        canvasColor: colorScheme.background,
+        scaffoldBackgroundColor: colorScheme.surface,
+        canvasColor: colorScheme.surface,
         appBarTheme: const AppBarTheme().copyWith(
           backgroundColor: colorScheme.primary,
           foregroundColor: colorScheme.onPrimary,

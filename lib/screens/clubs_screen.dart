@@ -45,12 +45,12 @@ class _ClubsScreenState extends State<ClubsScreen> {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: SearchBar(
-            shape: MaterialStatePropertyAll<OutlinedBorder>(
+            shape: WidgetStatePropertyAll<OutlinedBorder>(
               ContinuousRectangleBorder(
                 borderRadius: BorderRadius.circular(0),
               ),
             ),
-            padding: const MaterialStatePropertyAll<EdgeInsets>(
+            padding: const WidgetStatePropertyAll<EdgeInsets>(
               EdgeInsets.symmetric(horizontal: 16),
             ),
             onChanged: (text) {

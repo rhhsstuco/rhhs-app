@@ -110,7 +110,7 @@ class _ClubCardState extends State<ClubCard> {
                     borderRadius: BorderRadius.circular(100.0),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.25),
+                        color: Colors.black.withValues(alpha: 0.25),
                         spreadRadius: 1,
                         blurRadius: 2,
                         offset: const Offset(0, 0),
